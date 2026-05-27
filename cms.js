@@ -3,19 +3,47 @@ document.addEventListener('DOMContentLoaded', () => {
     let cmsPassword = sessionStorage.getItem('cms_password') || '';
 
     // Listen for Ctrl+Shift+E
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', async (e) => {
         if (e.ctrlKey && e.shiftKey && e.key === 'E') {
             e.preventDefault();
             if (!isEditMode) {
                 if (!cmsPassword) {
                     const pwd = prompt('Zadajte heslo pre úpravu obsahu (Admin):');
-                    if (pwd) {
-                        cmsPassword = pwd;
-                        sessionStorage.setItem('cms_password', cmsPassword);
-                        enableEditMode();
+                    if (!pwd) return;
+                    
+                    try {
+                        const res = await fetch('/api/verify', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ password: pwd })
+                        });
+                        if (res.ok) {
+                            cmsPassword = pwd;
+                            sessionStorage.setItem('cms_password', cmsPassword);
+                            enableEditMode();
+                        } else {
+                            alert('Nesprávne heslo!');
+                        }
+                    } catch(err) {
+                        alert('Chyba pri overovaní hesla.');
                     }
                 } else {
-                    enableEditMode();
+                    try {
+                        const res = await fetch('/api/verify', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ password: cmsPassword })
+                        });
+                        if (res.ok) {
+                            enableEditMode();
+                        } else {
+                            sessionStorage.removeItem('cms_password');
+                            cmsPassword = '';
+                            alert('Platnosť hesla vypršala alebo bolo zmenené. Skúste to znova.');
+                        }
+                    } catch(err) {
+                        alert('Chyba pri overovaní hesla.');
+                    }
                 }
             } else {
                 disableEditMode();
