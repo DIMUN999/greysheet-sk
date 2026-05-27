@@ -321,8 +321,8 @@
     <section class="hero" style="padding: 6rem 0;">
         <div class="hero-overlay"></div>
         <div class="container hero-content">
-            <h1>Je GSA pre vás?</h1>
-            <p>Zistite, či vaše stravovacie návyky vykazujú znaky kompulzívneho prejedania a či by vám náš program mohol pomôcť nájsť slobodu.</p>
+            <h1 data-cms-id="prevas_hero_title">Je GSA pre vás?</h1>
+            <p data-cms-id="prevas_hero_desc">Zistite, či vaše stravovacie návyky vykazujú znaky kompulzívneho prejedania a či by vám náš program mohol pomôcť nájsť slobodu.</p>
         </div>
     </section>
 
@@ -332,8 +332,8 @@
         <section class="section" style="padding-bottom: 2rem;">
             <div class="container">
                 <div class="page-intro animate-on-scroll" style="background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%); padding: 3rem 2rem; border-radius: 16px; border: 1px solid #bfdbfe; margin-bottom: 3rem; max-width: 900px; box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.05);">
-                    <h2 style="color: #1e3a8a; margin-bottom: 0.75rem; font-size: 2.25rem;">Potrebujete pomoc?</h2>
-                    <p style="margin-bottom: 0; font-size: 1.15rem;">Zistite, či GSA môže byť pre vás riešením. Úprimne si odpovedzte na nasledujúcich 28 otázok.</p>
+                    <h2 data-cms-id="prevas_intro_title" style="color: #1e3a8a; margin-bottom: 0.75rem; font-size: 2.25rem;">Potrebujete pomoc?</h2>
+                    <p data-cms-id="prevas_intro_desc" style="margin-bottom: 0; font-size: 1.15rem;">Zistite, či GSA môže byť pre vás riešením. Úprimne si odpovedzte na nasledujúcich 28 otázok.</p>
                 </div>
 
                 <div class="questions-list animate-on-scroll">
@@ -459,9 +459,9 @@
         <section class="section" style="padding-top: 2rem; padding-bottom: 2rem;">
             <div class="container">
                 <div class="interpretation-card animate-on-scroll">
-                    <h2>Čo znamenajú vaše odpovede?</h2>
-                    <p>Ak ste na <strong>niekoľko</strong> z týchto otázok odpovedali <strong>ÁNO</strong>, je veľmi pravdepodobné, že máte sklon ku kompulzívnemu prejedaniu alebo trpíte potravinovou závislosťou.</p>
-                    <p>Nemusíte však prepadať zúfalstvu. Tisíce z nás boli v rovnakej situácii – bezmocní, vystrašení a presvedčení, že im niet pomoci. V GSA sme našli spôsob, ako dosiahnuť a udržať si trvalú abstinenciu a slobodu od nutkavého prejedania.</p>
+                    <h2 data-cms-id="prevas_interp_title">Čo znamenajú vaše odpovede?</h2>
+                    <p data-cms-id="prevas_interp_p1">Ak ste na <strong>niekoľko</strong> z týchto otázok odpovedali <strong>ÁNO</strong>, je veľmi pravdepodobné, že máte sklon ku kompulzívnemu prejedaniu alebo trpíte potravinovou závislosťou.</p>
+                    <p data-cms-id="prevas_interp_p2">Nemusíte však prepadať zúfalstvu. Tisíce z nás boli v rovnakej situácii – bezmocní, vystrašení a presvedčení, že im niet pomoci. V GSA sme našli spôsob, ako dosiahnuť a udržať si trvalú abstinenciu a slobodu od nutkavého prejedania.</p>
                 </div>
             </div>
         </section>
@@ -471,8 +471,8 @@
         <!-- FAQ Section -->
         <section class="section bg-light" style="padding-top: 4rem; padding-bottom: 4rem;">
             <div class="container faq-section animate-on-scroll">
-                <h2>Často kladené otázky</h2>
-                <p>Kliknutím na otázku zobrazíte odpoveď. Tieto informácie sú určené najmä pre nováčikov.</p>
+                <h2 data-cms-id="prevas_faq_title">Často kladené otázky</h2>
+                <p data-cms-id="prevas_faq_desc">Kliknutím na otázku zobrazíte odpoveď. Tieto informácie sú určené najmä pre nováčikov.</p>
                 
                 <div class="faq-list">
                     <!-- FAQ 1 -->
@@ -676,6 +676,7 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="cms.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const faqQuestions = document.querySelectorAll('.faq-question');

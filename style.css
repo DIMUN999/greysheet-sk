@@ -902,3 +902,82 @@ textarea.form-control {
 .transition-delay-100 { transition-delay: 100ms; }
 .transition-delay-200 { transition-delay: 200ms; }
 .transition-delay-300 { transition-delay: 300ms; }
+
+/* ==========================================================================
+   CMS In-Browser Editor Styles
+   ========================================================================== */
+
+#cms-toolbar {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #111827;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 50px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    z-index: 999999;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    animation: cmsSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cms-toolbar-inner {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.cms-toolbar-inner span {
+    font-weight: 600;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+#cms-toolbar button {
+    background: var(--primary-color, #0ea5e9);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+#cms-toolbar button:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+}
+
+#cms-toolbar #cms-cancel-btn {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+#cms-toolbar #cms-cancel-btn:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+/* Outline for editable elements */
+.cms-editable {
+    outline: 2px dashed rgba(14, 165, 233, 0.5);
+    outline-offset: 4px;
+    border-radius: 4px;
+    transition: outline-color 0.2s ease, background-color 0.2s ease;
+}
+
+.cms-editable:hover, .cms-editable:focus {
+    outline: 2px solid var(--primary-color, #0ea5e9);
+    background-color: rgba(14, 165, 233, 0.05);
+}
+
+@keyframes cmsSlideUp {
+    from { transform: translate(-50%, 100%); opacity: 0; }
+    to { transform: translate(-50%, 0); opacity: 1; }
+}
+
