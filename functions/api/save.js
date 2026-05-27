@@ -1,10 +1,10 @@
 export async function onRequestPost(context) {
   try {
     const { request, env } = context;
-    const { CMS_PASSWORD, GITHUB_TOKEN, GITHUB_OWNER, GITHUB_REPO } = env;
+    const { ADMIN_PASSWORD, GITHUB_TOKEN, GITHUB_OWNER, GITHUB_REPO } = env;
 
     // 1. Verify environment variables are set
-    if (!CMS_PASSWORD || !GITHUB_TOKEN || !GITHUB_OWNER || !GITHUB_REPO) {
+    if (!ADMIN_PASSWORD || !GITHUB_TOKEN || !GITHUB_OWNER || !GITHUB_REPO) {
       return new Response(JSON.stringify({ error: "Server is missing environment variables." }), { status: 500 });
     }
 
@@ -13,7 +13,7 @@ export async function onRequestPost(context) {
     const { password, path, content } = body;
 
     // 3. Verify the password
-    if (password !== CMS_PASSWORD) {
+    if (password !== ADMIN_PASSWORD) {
       return new Response(JSON.stringify({ error: "Unauthorized. Invalid password." }), { status: 401 });
     }
 
