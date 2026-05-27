@@ -23,6 +23,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Prevent navigation on editable links during edit mode
+    document.addEventListener('click', (e) => {
+        if (isEditMode) {
+            const link = e.target.closest('a');
+            if (link) {
+                e.preventDefault();
+            }
+        }
+    });
+
     function enableEditMode() {
         isEditMode = true;
         
