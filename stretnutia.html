@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="sk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stretnutia - GreySheeters Anonymous Slovensko</title>
+    <meta name="description"
+        content="Nájdite online stretnutia GreySheeters Anonymous na Slovensku. Stretávame sa každú sobotu na Zoom a každý utorok na Skype. Požiadajte o prístupové údaje.">
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/GSA_Horizontal_logo.png">
+
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .pt-0 {
+            padding-top: 0 !important;
+        }
+
+        /* Page intro styling */
+        .page-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem auto;
+        }
+        .page-intro h2 {
+            font-size: 2.5rem;
+            color: #0f172a;
+            margin-bottom: 1.25rem;
+        }
+        .page-intro p {
+            font-size: 1.15rem;
+            color: var(--text-main);
+            line-height: 1.8;
+            margin-bottom: 0;
+        }
+
+        /* Meetings Layout */
+        .meetings-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        @media (min-width: 768px) {
+            .meetings-layout {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .meeting-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .meeting-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+        }
+
+        .meeting-platform {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background-color: var(--alert-bg);
+            border: 1px solid var(--alert-border);
+            padding: 0.35rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .platform-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+        }
+
+        .meeting-card h3 {
+            font-size: 1.6rem;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+        }
+
+        .meeting-time {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 1rem;
+        }
+
+        .meeting-recurrence {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .meeting-btn {
+            width: 100%;
+            text-align: center;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* Guidelines & Details Layout */
+        .info-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        @media (min-width: 768px) {
+            .info-layout {
+                grid-template-columns: 1.2fr 0.8fr;
+            }
+        }
+
+        .guidelines-col h2 {
+            font-size: 2rem;
+            color: #0f172a;
+            margin-bottom: 1.5rem;
+        }
+
+        .guidelines-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .guideline-item {
+            display: flex;
+            gap: 1.25rem;
+            align-items: flex-start;
+        }
+
+        .guideline-icon-wrapper {
+            background-color: var(--alert-bg);
+            color: var(--primary-color);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border: 1px solid var(--alert-border);
+        }
+
+        .guideline-text h4 {
+            font-size: 1.15rem;
+            color: #0f172a;
+            margin-bottom: 0.35rem;
+        }
+
+        .guideline-text p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--text-main);
+            margin-bottom: 0;
+        }
+
+        /* International card */
+        .intl-card {
+            background-color: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .intl-card h3 {
+            font-size: 1.35rem;
+            color: #0f172a;
+            margin-bottom: 1rem;
+        }
+
+        .intl-card p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--text-main);
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .intl-btn {
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Subtle divider */
+        .section-divider {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--border-color), transparent);
+            margin: 4rem auto;
+            max-width: 80%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="images/images (6).jpg" alt="GreySheeters Anonymous Slovensko Logo" class="logo-img">
+                <div class="logo-text">
+                    <span class="logo-bold">GreySheeters</span> Anonymous
+                    <span class="logo-sub">Slovensko</span>
+                </div>
+            </a>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-btn" aria-label="Otvoriť menu" id="menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Navigation Links -->
+            <nav class="nav-links" id="nav-links">
+                <a href="index.html">Domov</a>
+                <a href="o-gsa.html">O spoločenstve</a>
+                <a href="je-gsa-pre-vas.html">Je GSA pre vás?</a>
+                <a href="stretnutia.html" class="active">Stretnutia</a>
+                <a href="literatura.html">Literatúra</a>
+                <a href="kontakt.html" class="btn-primary">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" style="padding: 6rem 0;">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1>Stretnutia GSA</h1>
+            <p>Spoločne zdieľame svoje skúsenosti, silu a nádej. Pripojte sa k našim pravidelným slovenským stretnutiam online.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Meetings Section -->
+        <section class="section">
+            <div class="container">
+
+                <div class="meetings-layout">
+                    <!-- Zoom Card -->
+                    <div class="meeting-card animate-on-scroll">
+                        <div class="meeting-platform">
+                            <span class="platform-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M23 7l-7 5 7 5V7z"></path>
+                                    <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                                </svg>
+                            </span>
+                            Zoom Meeting
+                        </div>
+                        <h3>Sobotné stretnutie</h3>
+                        <div class="meeting-time">Každú sobotu o 19:00</div>
+                        <button class="btn-primary meeting-btn open-modal-btn" data-meeting="Sobotné stretnutie (Zoom)">
+                            Požiadať o prístup
+                        </button>
+                    </div>
+
+                    <!-- Skype Card -->
+                    <div class="meeting-card animate-on-scroll">
+                        <div class="meeting-platform">
+                            <span class="platform-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                </svg>
+                            </span>
+                            Skype Meeting
+                        </div>
+                        <h3>Utorkové stretnutie</h3>
+                        <div class="meeting-time">Každý utorok o 19:00</div>
+                        <button class="btn-primary meeting-btn open-modal-btn" data-meeting="Utorkové stretnutie (Skype)">
+                            Požiadať o prístup
+                        </button>
+                    </div>
+                </div>
+
+                <hr class="section-divider">
+
+                <!-- Info & Guidelines Grid -->
+                <div class="info-layout">
+                    <!-- Guidelines Column -->
+                    <div class="guidelines-col animate-on-scroll">
+                        <h2>Pravidlá a priebeh stretnutí</h2>
+                        <ul class="guidelines-list">
+                            <li class="guideline-item">
+                                <div class="guideline-icon-wrapper">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                    </svg>
+                                </div>
+                                <div class="guideline-text">
+                                    <h4>Dôvernosť a anonymita</h4>
+                                    <p>Anonymita je duchovným základom všetkých našich tradícií. Všetko, čo sa na stretnutiach povie, zostáva medzi účastníkmi stretnutia. Rešpektujeme súkromie každého člena.</p>
+                                </div>
+                            </li>
+                            <li class="guideline-item">
+                                <div class="guideline-icon-wrapper">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                                    </svg>
+                                </div>
+                                <div class="guideline-text">
+                                    <h4>Stretnutia sú bezplatné</h4>
+                                    <p>Neplatia sa žiadne registračné poplatky ani vstupné. Sme plne sebestační vďaka dobrovoľným príspevkom našich členov, ktoré slúžia výlučne na pokrytie nákladov platformy.</p>
+                                </div>
+                            </li>
+                            <li class="guideline-item">
+                                <div class="guideline-icon-wrapper">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path>
+                                        <path d="M12 6v6l4 2"></path>
+                                    </svg>
+                                </div>
+                                <div class="guideline-text">
+                                    <h4>Definícia abstinencie a zdieľanie</h4>
+                                    <p>Na stretnutiach GSA definujeme abstinenciu ako tri vážené a merané jedlá denne z plánu stravovania GreySheet, bez ničoho medzitým, pod vedením sponzora. Na stretnutiach môžu zdieľať všetci prítomní členovia. Podmienka minimálne 90 dní neprerušenej GSA abstinencie sa vzťahuje len na vedenie (moderovanie) stretnutí.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- International Meetings Card -->
+                    <div>
+                        <div class="intl-card animate-on-scroll">
+                            <h3>Celosvetové stretnutia</h3>
+                            <p>Hľadáte online alebo telefonické stretnutia v angličtine či inom cudzom jazyku? Oficiálna medzinárodná organizácia GreySheeters Anonymous World Services koordinuje stovky stretnutí po celom svete, ktoré prebiehajú takmer nepretržite v rôznych časových pásmach.</p>
+                            <a href="https://www.greysheet.org/meetings" target="_blank" rel="noopener" class="btn-outline intl-btn">
+                                Nájsť medzinárodné stretnutia
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Request Modal -->
+    <div class="modal-overlay" id="contact-modal">
+        <div class="modal-container">
+            <button class="modal-close-btn" aria-label="Zatvoriť" id="close-modal-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            
+            <!-- Form Content -->
+            <div id="modal-form-content">
+                <div class="modal-header">
+                    <h2>Požiadať o prístup na stretnutie</h2>
+                    <p>Vyplňte formulár a my vám čoskoro zašleme bezpečný odkaz na pripojenie.</p>
+                </div>
+                
+                <form id="gsa-meeting-form" action="https://formsubmit.co/ajax/samuel.kolar2008@gmail.com" method="POST" class="contact-form">
+                    <input type="hidden" name="_subject" value="Žiadosť o prístup na GSA stretnutie (Slovensko)">
+                    <input type="hidden" name="_template" value="table">
+                    
+                    <div class="form-group">
+                        <label for="form-name">Vaše krstné meno *</label>
+                        <input type="text" id="form-name" name="name" required class="form-control" placeholder="Napr. Janka">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="form-contact">E-mail alebo telefón *</label>
+                        <input type="text" id="form-contact" name="email_or_phone" required class="form-control" placeholder="Kde vám môžeme poslať odkaz">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="form-meeting-select">Vyberte stretnutie *</label>
+                        <select id="form-meeting-select" name="requested_meeting" class="form-control" style="-webkit-appearance: none; -moz-appearance: none; appearance: none; background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%2364748b%22 stroke-width=%222.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><polyline points=%226 9 12 15 18 9%22></polyline></svg>'); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem;">
+                            <option value="Sobotné stretnutie (Zoom)">Sobotné stretnutie (Zoom) - Sobota o 19:00</option>
+                            <option value="Utorkové stretnutie (Skype)">Utorkové stretnutie (Skype) - Utorok o 19:00</option>
+                            <option value="Obe stretnutia">Obe stretnutia (Zoom aj Skype)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="form-message">Vaša správa (voliteľné)</label>
+                        <textarea id="form-message" name="message" class="form-control" placeholder="Môžete pridať doplňujúce otázky..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary form-submit-btn" id="submit-btn">
+                        <span>Požiadať o odkaz</span>
+                        <div class="spinner" id="submit-spinner"></div>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Success State -->
+            <div id="modal-success-content" class="form-success-container">
+                <div class="success-icon-wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
+                <div class="success-message">
+                    <h3>Žiadosť bola odoslaná!</h3>
+                    <p>Ďakujeme vám. Vaša požiadavka bola úspešne odoslaná. Odkaz na pripojenie k vybranému stretnutiu vám zašleme e-mailom alebo správou v krátkom čase.</p>
+                </div>
+                <button class="btn-primary" id="success-close-btn" style="width: 100%;">Zatvoriť</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h4>GreySheeters Anonymous</h4>
+                <p>Spoločenstvo mužov a žien, ktorí spoločne riešia svoj problém s kompulzívnym prejedaním.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Rýchle odkazy</h4>
+                <ul>
+                    <li><a href="o-gsa.html">O spoločenstve</a></li>
+                    <li><a href="je-gsa-pre-vas.html">Je GSA pre vás?</a></li>
+                    <li><a href="stretnutia.html">Stretnutia</a></li>
+                    <li><a href="literatura.html">Literatúra</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Užitočné zdroje</h4>
+                <ul>
+                    <li><a href="https://www.greysheet.org/" target="_blank" rel="noopener">Oficiálna medzinárodná stránka (EN)</a></li>
+                    <li><a href="kontakt.html">Kontaktujte nás</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; <span id="year"></span> GreySheeters Anonymous Slovensko. Všetky práva vyhradené.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Modal Elements
+            const modal = document.getElementById('contact-modal');
+            const openModalBtns = document.querySelectorAll('.open-modal-btn');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            const successCloseBtn = document.getElementById('success-close-btn');
+            
+            // Form & Success Containers
+            const formContent = document.getElementById('modal-form-content');
+            const successContent = document.getElementById('modal-success-content');
+            const meetingForm = document.getElementById('gsa-meeting-form');
+            const meetingSelect = document.getElementById('form-meeting-select');
+            const submitBtn = document.getElementById('submit-btn');
+            const submitSpinner = document.getElementById('submit-spinner');
+            const submitBtnText = submitBtn.querySelector('span');
+
+            // Open Modal
+            openModalBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Set selected meeting value based on card clicked
+                    const meetingVal = btn.getAttribute('data-meeting');
+                    if (meetingVal) {
+                        meetingSelect.value = meetingVal;
+                    }
+                    modal.classList.add('open');
+                    document.body.style.overflow = 'hidden'; // Disable scroll on body
+                });
+            });
+
+            // Close Modal Function
+            const closeModal = () => {
+                modal.classList.remove('open');
+                document.body.style.overflow = ''; // Restore scroll
+                
+                // Reset states after animation completes
+                setTimeout(() => {
+                    formContent.style.display = 'block';
+                    successContent.style.display = 'none';
+                    meetingForm.reset();
+                    submitBtn.disabled = false;
+                    submitSpinner.style.display = 'none';
+                    submitBtnText.textContent = 'Požiadať o odkaz';
+                }, 300);
+            };
+
+            closeModalBtn.addEventListener('click', closeModal);
+            successCloseBtn.addEventListener('click', closeModal);
+
+            // Close Modal on clicking outside the container
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            // Close Modal on ESC key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('open')) {
+                    closeModal();
+                }
+            });
+
+            // AJAX Form Submission
+            meetingForm.addEventListener('submit', (e) => {
+                // FormSubmit AJAX does not work from the file:// protocol due to CORS constraints.
+                // We fall back to a standard redirect submission if opened locally.
+                if (window.location.protocol === 'file:') {
+                    meetingForm.action = 'https://formsubmit.co/samuel.kolar2008@gmail.com';
+                    return; // Let standard form submission handle it
+                }
+
+                e.preventDefault();
+
+                // Disable submit button and show spinner
+                submitBtn.disabled = true;
+                submitSpinner.style.display = 'block';
+                submitBtnText.textContent = 'Odosiela sa...';
+
+                // Get form data
+                const formData = new FormData(meetingForm);
+                const data = {};
+                formData.forEach((value, key) => {
+                    data[key] = value;
+                });
+
+                // Post via AJAX to FormSubmit
+                fetch(meetingForm.action, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error('Chyba pri odosielaní formulára.');
+                    }
+                })
+                .then(data => {
+                    // Show success screen inside the modal
+                    formContent.style.display = 'none';
+                    successContent.style.display = 'flex';
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Nastal problém pri odosielaní správy. Skontrolujte prosím internetové pripojenie alebo nás kontaktujte priamo na e-mail.');
+                    
+                    // Re-enable submit button
+                    submitBtn.disabled = false;
+                    submitSpinner.style.display = 'none';
+                    submitBtnText.textContent = 'Požiadať o odkaz';
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

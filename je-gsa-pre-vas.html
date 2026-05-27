@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="sk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Je GSA pre vás? - GreySheeters Anonymous Slovensko</title>
+    <meta name="description"
+        content="Zistite, či je spoločenstvo GreySheeters Anonymous a náš program abstinencie určený pre vás. Prečítajte si 28 diagnostických otázok a FAQ pre nováčikov.">
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/GSA_Horizontal_logo.png">
+
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .pt-0 {
+            padding-top: 0 !important;
+        }
+
+        /* Page intro styling */
+        .page-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .page-intro h2 {
+            font-size: 2.5rem;
+            color: #0f172a;
+            margin-bottom: 1.5rem;
+        }
+        .page-intro p {
+            font-size: 1.15rem;
+            color: var(--text-main);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Subtle divider */
+        .section-divider {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--border-color), transparent);
+            margin: 3rem auto;
+            max-width: 80%;
+        }
+
+        /* Questions checklist styles */
+        .questions-list {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        @media (min-width: 768px) {
+            .questions-list {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 0.75rem 1.5rem;
+            }
+        }
+        .question-item {
+            display: flex;
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            transition: var(--transition);
+            align-items: center;
+        }
+        .question-item:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+            background-color: #fafbfd;
+        }
+        .question-text {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            line-height: 1.4;
+        }
+
+        /* Interpretation styling */
+        .interpretation-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 3.5rem 2.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .interpretation-card h2 {
+            font-size: 2.25rem;
+            color: #0f172a;
+            margin-bottom: 1.5rem;
+        }
+        .interpretation-card p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+        }
+
+        /* FAQ Section Styles */
+        .faq-section {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .faq-section h2 {
+            font-size: 2.5rem;
+            color: #0f172a;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .faq-section > p {
+            font-size: 1.15rem;
+            color: var(--text-main);
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .faq-item {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .faq-item:hover {
+            border-color: #cbd5e1;
+            background-color: #f8fafc;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+        }
+        .faq-question {
+            font-family: inherit;
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 1.25rem 1.5rem;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #0f172a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .faq-question:hover {
+            color: var(--primary-color);
+        }
+        .faq-arrow {
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+            color: var(--text-light);
+        }
+        .faq-item.active .faq-arrow {
+            transform: rotate(180deg);
+            color: var(--primary-color);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .faq-answer-content {
+            padding: 0 1.5rem 1.25rem;
+            color: var(--text-main);
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+        .faq-answer-content p {
+            margin-bottom: 0.75rem;
+        }
+        .faq-answer-content p:last-child {
+            margin-bottom: 0;
+        }
+        .faq-answer-content a {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        .faq-answer-content a:hover {
+            text-decoration: underline;
+        }
+
+        /* Disclaimer/Info Box */
+        .disclaimer-box {
+            background-color: var(--alert-bg);
+            border: 1px solid var(--alert-border);
+            border-left: 4px solid var(--primary-color);
+            color: var(--alert-text);
+            padding: 1.5rem 2rem;
+            border-radius: 8px;
+            max-width: 800px;
+            margin: 3rem auto;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            display: flex;
+            gap: 1.25rem;
+            align-items: flex-start;
+            text-align: left;
+        }
+        .disclaimer-icon {
+            flex-shrink: 0;
+            color: var(--primary-color);
+        }
+
+        /* Next Steps section */
+        .next-steps-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .next-steps-container h2 {
+            font-size: 2.25rem;
+            color: #0f172a;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .next-steps-container > p {
+            font-size: 1.15rem;
+            color: var(--text-main);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .next-steps-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        @media (min-width: 768px) {
+            .next-steps-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        .step-card {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .step-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+            border-color: var(--primary-color);
+        }
+        .step-card-icon {
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: center;
+            color: var(--primary-color);
+        }
+        .step-card h3 {
+            font-size: 1.25rem;
+            color: #0f172a;
+            margin-bottom: 1rem;
+        }
+        .step-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        .step-card .btn-outline {
+            margin-top: auto;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="images/images (6).jpg" alt="GreySheeters Anonymous Slovensko Logo" class="logo-img">
+                <div class="logo-text">
+                    <span class="logo-bold">GreySheeters</span> Anonymous
+                    <span class="logo-sub">Slovensko</span>
+                </div>
+            </a>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-btn" aria-label="Otvoriť menu" id="menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Navigation Links -->
+            <nav class="nav-links" id="nav-links">
+                <a href="index.html">Domov</a>
+                <a href="o-gsa.html">O spoločenstve</a>
+                <a href="je-gsa-pre-vas.html" class="active">Je GSA pre vás?</a>
+                <a href="stretnutia.html">Stretnutia</a>
+                <a href="literatura.html">Literatúra</a>
+                <a href="kontakt.html" class="btn-primary">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" style="padding: 6rem 0;">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1>Je GSA pre vás?</h1>
+            <p>Zistite, či vaše stravovacie návyky vykazujú znaky kompulzívneho prejedania a či by vám náš program mohol pomôcť nájsť slobodu.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Combined Intro & Questions Section -->
+        <section class="section" style="padding-bottom: 2rem;">
+            <div class="container">
+                <div class="page-intro animate-on-scroll" style="background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%); padding: 3rem 2rem; border-radius: 16px; border: 1px solid #bfdbfe; margin-bottom: 3rem; max-width: 900px; box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.05);">
+                    <h2 style="color: #1e3a8a; margin-bottom: 0.75rem; font-size: 2.25rem;">Potrebujete pomoc?</h2>
+                    <p style="margin-bottom: 0; font-size: 1.15rem;">Zistite, či GSA môže byť pre vás riešením. Úprimne si odpovedzte na nasledujúcich 28 otázok.</p>
+                </div>
+
+                <div class="questions-list animate-on-scroll">
+                    <!-- Q1 -->
+                    <div class="question-item">
+                        <div class="question-text">Máte nutkavé myšlienky na jedlo?</div>
+                    </div>
+                    <!-- Q2 -->
+                    <div class="question-item">
+                        <div class="question-text">Nedokážete kontrolovať svoje stravovanie?</div>
+                    </div>
+                    <!-- Q3 -->
+                    <div class="question-item">
+                        <div class="question-text">Stáva sa vám, že keď začnete jesť, nedokážete prestať, aj keď to naozaj chcete?</div>
+                    </div>
+                    <!-- Q4 -->
+                    <div class="question-item">
+                        <div class="question-text">Jete preto, aby ste sa vyhli svojim pocitom?</div>
+                    </div>
+                    <!-- Q5 -->
+                    <div class="question-item">
+                        <div class="question-text">Máte nadváhu, alebo máte podváhu?</div>
+                    </div>
+                    <!-- Q6 -->
+                    <div class="question-item">
+                        <div class="question-text">Cítite sa povznesene (eufóriu), keď jete cukor, škroby a/alebo iné sacharidy?</div>
+                    </div>
+                    <!-- Q7 -->
+                    <div class="question-item">
+                        <div class="question-text">Jete preto, aby ste zmenili to, ako sa cítite?</div>
+                    </div>
+                    <!-- Q8 -->
+                    <div class="question-item">
+                        <div class="question-text">Boli ste niekedy neschopní udržať si dlhodobú kontrolu nad svojím stravovaním?</div>
+                    </div>
+                    <!-- Q9 -->
+                    <div class="question-item">
+                        <div class="question-text">Boli ste neschopní riadiť svoju hmotnosť napriek odporúčaniam lekára?</div>
+                    </div>
+                    <!-- Q10 -->
+                    <div class="question-item">
+                        <div class="question-text">Ste unavení z nekonečného jojo efektu pri diétach?</div>
+                    </div>
+                    <!-- Q11 -->
+                    <div class="question-item">
+                        <div class="question-text">Jedli ste už niekedy aj vtedy, keď ste neboli hladní?</div>
+                    </div>
+                    <!-- Q12 -->
+                    <div class="question-item">
+                        <div class="question-text">Ste unavení zo snahy kontrolovať svoju váhu pomocou hladoviek, cvičenia alebo diét?</div>
+                    </div>
+                    <!-- Q13 -->
+                    <div class="question-item">
+                        <div class="question-text">Vyskúšali ste už prakticky každú dostupnú diétu a program na chudnutie?</div>
+                    </div>
+                    <!-- Q14 -->
+                    <div class="question-item">
+                        <div class="question-text">Zvažovali ste operáciu žalúdka kvôli kontrole hmotnosti?</div>
+                    </div>
+                    <!-- Q15 -->
+                    <div class="question-item">
+                        <div class="question-text">Vyskúšali ste prejedanie sa a následné vracanie s preháňadlami alebo bez nich?</div>
+                    </div>
+                    <!-- Q16 -->
+                    <div class="question-item">
+                        <div class="question-text">Máte neprimeranú chuť na konkrétne potraviny?</div>
+                    </div>
+                    <!-- Q17 -->
+                    <div class="question-item">
+                        <div class="question-text">Utekáte k jedlu, aby vám pomohlo zvládnuť stresujúce alebo emočné situácie?</div>
+                    </div>
+                    <!-- Q18 -->
+                    <div class="question-item">
+                        <div class="question-text">Používali ste na kontrolu hmotnosti lieky, tabletky na chudnutie alebo výživové doplnky?</div>
+                    </div>
+                    <!-- Q19 -->
+                    <div class="question-item">
+                        <div class="question-text">Trpíte depresiou, úzkosťou alebo nervozitou?</div>
+                    </div>
+                    <!-- Q20 -->
+                    <div class="question-item">
+                        <div class="question-text">Skúšali ste neúspešne počítať kalórie alebo body?</div>
+                    </div>
+                    <!-- Q21 -->
+                    <div class="question-item">
+                        <div class="question-text">Pociťujete po jedle náhly útlm, zaspávate alebo sa cítite unavení?</div>
+                    </div>
+                    <!-- Q22 -->
+                    <div class="question-item">
+                        <div class="question-text">Zažili ste po záchvatovom prejedaní pocit „zahmlenej mysle“ alebo zníženú produktivitu?</div>
+                    </div>
+                    <!-- Q23 -->
+                    <div class="question-item">
+                        <div class="question-text">Zisťujete, že jete v noci alebo v stave spánku?</div>
+                    </div>
+                    <!-- Q24 -->
+                    <div class="question-item">
+                        <div class="question-text">Máte problémy so spánkom kvôli svojmu stravovaniu?</div>
+                    </div>
+                    <!-- Q25 -->
+                    <div class="question-item">
+                        <div class="question-text">Boli ste niekedy liečení na zdravotný problém súvisiaci s vaším stravovaním?</div>
+                    </div>
+                    <!-- Q26 -->
+                    <div class="question-item">
+                        <div class="question-text">Máte kvôli svojmu stravovaniu problémy v práci alebo vo vzťahoch?</div>
+                    </div>
+                    <!-- Q27 -->
+                    <div class="question-item">
+                        <div class="question-text">Milujete a/alebo nenávidíte jedlo a to, čo pre vás/s vami robí?</div>
+                    </div>
+                    <!-- Q28 -->
+                    <div class="question-item">
+                        <div class="question-text">Zažili ste počiatočný úspech v iných programoch na uzdravenie z jedla, ale nedokázali ste si udržať dlhodobú abstinenciu?</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- Interpretation Card Section -->
+        <section class="section" style="padding-top: 2rem; padding-bottom: 2rem;">
+            <div class="container">
+                <div class="interpretation-card animate-on-scroll">
+                    <h2>Čo znamenajú vaše odpovede?</h2>
+                    <p>Ak ste na <strong>niekoľko</strong> z týchto otázok odpovedali <strong>ÁNO</strong>, je veľmi pravdepodobné, že máte sklon ku kompulzívnemu prejedaniu alebo trpíte potravinovou závislosťou.</p>
+                    <p>Nemusíte však prepadať zúfalstvu. Tisíce z nás boli v rovnakej situácii – bezmocní, vystrašení a presvedčení, že im niet pomoci. V GSA sme našli spôsob, ako dosiahnuť a udržať si trvalú abstinenciu a slobodu od nutkavého prejedania.</p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- FAQ Section -->
+        <section class="section bg-light" style="padding-top: 4rem; padding-bottom: 4rem;">
+            <div class="container faq-section animate-on-scroll">
+                <h2>Často kladené otázky</h2>
+                <p>Kliknutím na otázku zobrazíte odpoveď. Tieto informácie sú určené najmä pre nováčikov.</p>
+                
+                <div class="faq-list">
+                    <!-- FAQ 1 -->
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Koľko stojí program GreySheet?</span>
+                            <svg class="faq-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>Jedinou podmienkou členstva v GreySheeters Anonymous je túžba prestať kompulzívne jesť. Predtým, ako začnete, nemusíte vypĺňať žiadnu prihlášku ani platiť žiadne poplatky a nemusíte si objednávať žiadne špeciálne doplnky výživy ani náhrady jedla. Väčšina našej základnej literatúry je k dispozícii na bezplatné stiahnutie a vytlačenie.</p>
+                                <p>Abstinentná strava je dostupná v bežných obchodoch s potravinami, aj keď si pravdepodobne všimnete, že čerstvé bielkoviny, ovocie a zelenina stoja viac ako spracované potraviny s vysokým obsahom škrobu, ktoré väčšina z nás jedla pred príchodom do GSA.</p>
+                                <p>Každá skupina však žiada o dobrovoľné príspevky (v zmysle 7. tradície) na pokrytie výdavkov skupiny, ako je prenájom miestnosti alebo poplatky za online konferenčné služby. Členovia, ktorí majú v programe úspech a sú finančne schopní prispieť, sú k tomu povzbudzovaní, ale príspevky nie sú nikdy povinné.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Ako mám začať?</span>
+                            <svg class="faq-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>Najlepším miestom na začatie je návšteva stretnutia GreySheeters Anonymous. Naša stránka <a href="stretnutia.html">Stretnutia</a> obsahuje zoznam stretnutí a informácie o tom, ako sa pripojiť k telefonickým alebo online mítingom.</p>
+                                <p>Ak nikoho v GSA nepoznáte, nikdy ste neboli na 12-krokovom stretnutí a chcete začať ihneď, prejdite na našu stránku <a href="kontakt.html">Kontakt</a> a napíšte nám správu. Naša kontaktná osoba pre Slovensko sa s vami spojí a pomôže vám nájsť vášho prvého sponzora, ktorý vám odovzdá stravovací plán a vysvetlí vám základy.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Kedy prestanú nutkavé chute na jedlo?</span>
+                            <svg class="faq-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>Najťažšia časť fyzického detoxu (bolesti hlavy, únava, nevoľnosť a silná túžba po jedle) zvyčajne odznie do konca prvého týždňa dôslednej abstinencie. Emocionálny detox (podráždenosť, zmeny nálad, zvýšená citlivosť) môže trvať ešte niekoľko týždňov.</p>
+                                <p>Ak pociťujete silné chute aj po dlhšom čase, dôkladne skontrolujte etikety a zloženie všetkého, čo konzumujete alebo pijete, a porozprávajte sa so svojím sponzorom, aby ste sa uistili, že do vašej stravy omylom neprenikol skrytý cukor alebo škrob.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 4 -->
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Prečo nemôžeme jesť _________?</span>
+                            <svg class="faq-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>Vo všeobecnosti platí, že potraviny, ktoré nie sú na stravovacom pláne GreySheet, majú vysoký obsah sacharidov, cukrov alebo škrobov, ktoré spúšťajú fyzickú závislosť a nutkanie prejedať sa. Niektoré potraviny, ktoré nie sú výslovne vymenované, sú povolené, ak patria do rovnakej kategórie (napr. všetky druhy červeného mäsa, hydiny a rýb sú povolené, ak sú pripravené bez nepovolených prísad).</p>
+                                <p>V niektorých prípadoch presne nevieme, prečo konkrétny druh ovocia alebo zeleniny nebol do plánu zahrnutý pred desaťročiami. Čo však vieme s istotou je, že žiadny člen GSA doteraz nezomrel na to, že nejedol dané ovocie alebo zeleninu, a vy na to nezomriete tiež. Dôvera v plán a v skúsenosti tých, ktorí kráčali pred nami, je kľúčom k úspechu.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 5 -->
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Ako rýchlo schudnem?</span>
+                            <svg class="faq-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>Úbytok hmotnosti je zvyčajne najvýraznejší a najrýchlejší počas prvého mesiaca na pláne stravovania GreySheet a následne sa stabilizuje na zdravom tempe. Rýchlosť chudnutia závisí od mnohých individuálnych faktorov: od veku, pohlavia, úrovne fyzickej aktivity, celkového zdravotného stavu a od konkrétnych volieb jedál v rámci plánu.</p>
+                                <p>Pamätajte, že program GSA sa zameriava na udržateľnú úpravu hmotnosti a celkové telesné i duchovné uzdravenie, nie na bleskové diéty. Všetky otázky ohľadom úbytku váhy konzultujte so svojím sponzorom.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 6 -->
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Čo potrebujem okrem sponzora a stravovacieho plánu GreySheet?</span>
+                            <svg class="faq-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>Budete potrebovať digitálnu kuchynskú váhu, ktorá dokáže odvážiť jedlo v gramoch/unciach a disponuje funkciou vynulovania (tara) – aby ste mohli položiť tanier, vynulovať ho a následne presne odvážiť každú zložku jedla. Tieto váhy sú bežne dostupné v obchodoch s domácimi potrebami alebo online.</p>
+                                <p>Taktiež budete potrebovať sadu odmerných pohárov (cups) a lyžíc (lyžičiek) na presné meranie objemu tých potravín, ktoré sa merajú namiesto váženia.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Disclaimer Box Section -->
+        <section class="section pt-0" style="padding-bottom: 2rem;">
+            <div class="container">
+                <div class="disclaimer-box animate-on-scroll">
+                    <div class="disclaimer-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                        </svg>
+                    </div>
+                    <div>
+                        <strong>Dôležité upozornenie:</strong> GreySheeters Anonymous nie je lekárska ani psychoterapeutická inštitúcia. Sme svojpomocné spoločenstvo založené na vzájomnej podpore. Účasť v spoločenstve je bezplatná, dobrovoľná a plne anonymná. Ak máte zdravotné obavy, vždy sa poraďte so svojím lekárom.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- Next Steps Section -->
+        <section class="section" style="padding-top: 2rem;">
+            <div class="container next-steps-container">
+                <h2>Vaše ďalšie kroky</h2>
+                <p>Ak máte pocit, že GSA by mohlo byť riešením pre vás, neváhajte urobiť prvý krok k uzdraveniu.</p>
+                
+                <div class="next-steps-grid">
+                    <!-- Step 1 -->
+                    <div class="step-card">
+                        <div class="step-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                        </div>
+                        <h3>Navštívte stretnutie</h3>
+                        <p>Najlepší spôsob, ako zistiť viac, je vypočuť si skúsenosti iných. Pripojte sa k nášmu online alebo osobnému stretnutiu.</p>
+                        <a href="stretnutia.html" class="btn-outline">Zobraziť stretnutia</a>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="step-card animate-on-scroll">
+                        <div class="step-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                            </svg>
+                        </div>
+                        <h3>Prečítajte si viac</h3>
+                        <p>Preštudujte si literatúru a informácie o tom, ako funguje 12 krokov GSA a naša definícia abstinencie.</p>
+                        <a href="literatura.html" class="btn-outline">Literatúra GSA</a>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="step-card animate-on-scroll">
+                        <div class="step-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                        </div>
+                        <h3>Spojte sa s nami</h3>
+                        <p>Máte otázky alebo chcete požiadať o sponzora, ktorý vám odovzdá stravovací plán? Napíšte nám.</p>
+                        <a href="kontakt.html" class="btn-primary" style="margin-top: auto;">Kontaktovať nás</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h4>GreySheeters Anonymous</h4>
+                <p>Spoločenstvo mužov a žien, ktorí spoločne riešia svoj problém s kompulzívnym prejedaním.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Rýchle odkazy</h4>
+                <ul>
+                    <li><a href="o-gsa.html">O spoločenstve</a></li>
+                    <li><a href="je-gsa-pre-vas.html">Je GSA pre vás?</a></li>
+                    <li><a href="stretnutia.html">Stretnutia</a></li>
+                    <li><a href="literatura.html">Literatúra</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Užitočné zdroje</h4>
+                <ul>
+                    <li><a href="https://www.greysheet.org/" target="_blank" rel="noopener">Oficiálna medzinárodná stránka (EN)</a></li>
+                    <li><a href="kontakt.html">Kontaktujte nás</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; <span id="year"></span> GreySheeters Anonymous Slovensko. Všetky práva vyhradené.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const faqItem = question.parentElement;
+                    const faqAnswer = faqItem.querySelector('.faq-answer');
+                    const isActive = faqItem.classList.contains('active');
+                    
+                    // Close other FAQ items
+                    document.querySelectorAll('.faq-item').forEach(item => {
+                        item.classList.remove('active');
+                        item.querySelector('.faq-answer').style.maxHeight = null;
+                    });
+                    
+                    if (!isActive) {
+                        faqItem.classList.add('active');
+                        faqAnswer.style.maxHeight = faqAnswer.scrollHeight + 'px';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

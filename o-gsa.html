@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="sk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O spoločenstve - GreySheeters Anonymous</title>
+    <meta name="description"
+        content="Spoznajte spoločenstvo GreySheeters Anonymous. Zistite viac o našej definícii abstinencie, 12-krokovom programe a ako môžeme spoločne riešiť kompulzívne prejedanie.">
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/GSA_Horizontal_logo.png">
+
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .pt-0 {
+            padding-top: 0 !important;
+        }
+
+        /* Shared intro styling */
+        .page-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .page-intro h2 {
+            font-size: 2.5rem;
+            color: #0f172a;
+            margin-bottom: 1.5rem;
+        }
+        .page-intro p {
+            font-size: 1.15rem;
+            color: var(--text-main);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Intro Card */
+        .intro-card {
+            background: linear-gradient(to bottom right, var(--white), #f8fafc);
+            border-radius: 20px;
+            padding: 4rem 3rem;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+            text-align: left;
+            max-width: 900px;
+            margin: 0 auto;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .intro-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.1);
+        }
+        .intro-card::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(135deg, rgba(0, 64, 133, 0.06) 0%, rgba(0, 64, 133, 0) 100%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        .intro-card-content {
+            position: relative;
+            z-index: 1;
+        }
+        .intro-card h2 {
+            font-size: 2.5rem;
+            color: #0f172a;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .intro-card p {
+            font-size: 1.15rem;
+            color: var(--text-main);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        .intro-card p:last-child {
+            margin-bottom: 0;
+        }
+        .intro-badge {
+            display: inline-block;
+            background: var(--alert-bg);
+            color: var(--primary-color);
+            padding: 0.35rem 0.85rem;
+            border-radius: 50px;
+            font-size: 0.825rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            border: 1px solid var(--alert-border);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Subtle divider */
+        .section-divider {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--border-color), transparent);
+            margin: 3rem auto;
+            max-width: 80%;
+        }
+
+        /* History timeline */
+        .history-timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            padding-left: 3rem;
+            border-left: 3px solid #e2e8f0;
+        }
+        .history-timeline::before {
+            content: '';
+            position: absolute;
+            left: -13px;
+            top: 0;
+            width: 24px;
+            height: 24px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            border: 4px solid var(--white);
+            box-shadow: 0 0 0 2px var(--primary-color);
+        }
+        .history-timeline h2 {
+            font-size: 2.25rem;
+            color: #0f172a;
+            margin-bottom: 1.5rem;
+            margin-top: -8px; /* align with the dot */
+        }
+        .history-timeline p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Abstinence split section */
+        .abstinence-section {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            margin: 0 auto;
+            max-width: 1000px;
+        }
+        @media (min-width: 768px) {
+            .abstinence-section {
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+            }
+        }
+        .abstinence-text h2 {
+            font-size: 2.25rem;
+            color: #0f172a;
+            margin-bottom: 1.5rem;
+        }
+        .abstinence-text p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+        }
+        .abstinence-list {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 1px solid var(--border-color);
+        }
+        .abstinence-list ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .abstinence-list li {
+            position: relative;
+            padding-left: 2.5rem;
+            padding-bottom: 0.75rem;
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-main);
+            border-bottom: 1px dashed var(--border-color);
+        }
+        .abstinence-list li:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        .abstinence-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #16a34a;
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
+
+        /* Sponsor highlight card */
+        .sponsor-highlight {
+            background: linear-gradient(145deg, #f8fafc 0%, #eff6ff 100%);
+            border: 2px solid #bfdbfe;
+            border-radius: 16px;
+            padding: 3.5rem 2.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 15px 35px -5px rgba(37, 99, 235, 0.1);
+        }
+        .sponsor-highlight h2 {
+            color: #1e3a8a;
+            font-size: 2.25rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+        .sponsor-highlight p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #334155;
+        }
+        .sponsor-highlight p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 12 steps split card layout */
+        .steps-card {
+            display: grid;
+            grid-template-columns: 1fr;
+            background: var(--white);
+            border-radius: 24px;
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin: 0 auto;
+            max-width: 1000px;
+            border: 1px solid var(--border-color);
+        }
+        @media (min-width: 768px) {
+            .steps-card {
+                grid-template-columns: 1fr 2fr;
+            }
+        }
+        .steps-visual {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1e3a8a 100%);
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            position: relative;
+        }
+        .steps-visual .steps-number {
+            font-size: 8rem;
+            font-weight: 800;
+            line-height: 1;
+            background: linear-gradient(180deg, #ffffff 0%, rgba(255,255,255,0.5) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            /* Optically balance the visual weight of the number 1 */
+            padding-right: 1rem; 
+        }
+        .steps-visual .steps-label {
+            display: block;
+            margin-top: 0.5rem;
+            font-size: 1.5rem;
+            letter-spacing: 6px;
+            /* Compensate for the extra letter-spacing on the right */
+            padding-left: 6px; 
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+        .steps-content {
+            padding: 4rem 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .steps-content h2 {
+            font-size: 2.25rem;
+            color: #0f172a;
+            margin-bottom: 1.5rem;
+        }
+        .steps-content p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+        }
+        .steps-content p:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="images/images (6).jpg" alt="GreySheeters Anonymous Slovensko Logo" class="logo-img">
+                <div class="logo-text">
+                    <span class="logo-bold">GreySheeters</span> Anonymous
+                    <span class="logo-sub">Slovensko</span>
+                </div>
+            </a>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-btn" aria-label="Otvoriť menu" id="menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Navigation Links -->
+            <nav class="nav-links" id="nav-links">
+                <a href="index.html">Domov</a>
+                <a href="o-gsa.html" class="active">O spoločenstve</a>
+                <a href="je-gsa-pre-vas.html">Je GSA pre vás?</a>
+                <a href="stretnutia.html">Stretnutia</a>
+                <a href="literatura.html">Literatúra</a>
+                <a href="kontakt.html" class="btn-primary">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" style="padding: 6rem 0;">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1>O našom spoločenstve</h1>
+            <p>Zistite viac o našej histórii, našej definícii abstinencie a o tom, ako funguje 12-krokový program pre kompulzívnych jedákov.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Intro Section: Čo je GSA -->
+        <section class="section" style="padding-bottom: 2rem;">
+            <div class="container">
+                <div class="intro-card animate-on-scroll">
+                    <div class="intro-card-content">
+                        <span class="intro-badge">O nás</span>
+                        <h2>Čo je GSA?</h2>
+                        <p>Anonymní GreySheeteri (GreySheeters Anonymous - GSA) je spoločenstvo mužov a žien, ktorí zdieľajú svoje skúsenosti, silu a nádej v snahe riešiť náš spoločný problém - <strong>kompulzívne prejedanie</strong>. Naším prvoradým cieľom je zostať abstinentmi a pomáhať ďalším kompulzívnym jedákom dosiahnuť abstinenciu.</p>
+                        <p>Jedinou podmienkou členstva v GSA je túžba prestať jesť kompulzívnym spôsobom. Sme neprofesionálna organizácia a neplatíme žiadne členské poplatky. Sme plne sebestační prostredníctvom našich vlastných dobrovoľných príspevkov.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <hr class="section-divider">
+
+        <!-- History Timeline -->
+        <section class="section" style="padding-top: 2rem; padding-bottom: 2rem;">
+            <div class="container">
+                <div class="history-timeline animate-on-scroll">
+                    <h2>Naša história</h2>
+                    <p>GSA má svoje korene v 12-krokovom programe Anonymných alkoholikov (AA). Naše spoločenstvo vzniklo s cieľom poskytnúť špecifický a jasne definovaný plán stravovania (GreySheet) pre tých z nás, pre ktorých bežné metódy kontroly hmotnosti alebo iné programy nefungovali.</p>
+                    <p>Boli sme beznádejní kompulzívni jedáci, ktorí nenašli úľavu nikde inde. V priebehu rokov sa naše spoločenstvo rozrástlo do celého sveta a pomohlo tisíckam ľudí nájsť trvalú slobodu od kompulzívneho prejedania.</p>
+                </div>
+            </div>
+        </section>
+        
+        <hr class="section-divider">
+
+        <!-- Abstinence Split Section -->
+        <section class="section" style="padding-top: 2rem; padding-bottom: 2rem;">
+            <div class="container abstinence-section">
+                <div class="abstinence-text animate-on-scroll">
+                    <h2>Čo je abstinencia v GSA?</h2>
+                    <p>Zistili sme, že na to, aby sme sa uzdravili, musíme prijať úplnú a nekompromisnú abstinenciu. Naša definícia abstinencie je presná a prísna, no zároveň hlboko oslobodzujúca.</p>
+                    <p>Táto jasná definícia odstraňuje akékoľvek dohady a diskusie s vlastnou mysľou. Vďaka nej získavame denný odklad od nášho ochorenia a uvoľňujeme si myseľ pre plnohodnotný život.</p>
+                </div>
+                <div class="abstinence-list animate-on-scroll transition-delay-100">
+                    <ul>
+                        <li>Jeme výlučne jedlá z plánu stravovania GreySheet (tzv. "Šedý list").</li>
+                        <li>Jeme tri vážené a merané jedlá denne.</li>
+                        <li>Svoje jedlo si zapisujeme a odovzdávame nášmu sponzorovi.</li>
+                        <li>Dodržiavame prestávku minimálne štyri až päť hodín medzi jedlami.</li>
+                        <li>Bez výnimky sa vyhýbame cukru, obilninám a škrobom.</li>
+                        <li>Medzi jedlami nikdy nič nejeme, pijeme len nápoje bez kalórií.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- Sponsor Highlight -->
+        <section class="section" style="padding-top: 2rem; padding-bottom: 2rem;">
+            <div class="container">
+                <div class="sponsor-highlight animate-on-scroll">
+                    <h2>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        Sponzor a plán GreySheet
+                    </h2>
+                    <p><strong>Plán stravovania GreySheet nie je voľne dostupný na internete ani v žiadnej literatúre.</strong> Tento plán poskytuje výlučne <strong>kvalifikovaný sponzor</strong>. Sponzor je člen GSA, ktorý má za sebou minimálne 90 dní nepretržitej abstinencie podľa plánu GreySheet a má priamu skúsenosť s programom.</p>
+                    <p>Jedlo je totiž len časťou nášho problému. Sponzor vás prevedie nielen tým, <em>čo</em> jesť, ale poskytne vám neoceniteľnú podporu, pomôže vám zorientovať sa v bežných úskaliach, zodpovie vaše otázky a bude vás sprevádzať celým procesom uzdravovania.</p>
+                    <p>Odovzdávanie stravy sponzorovi každý deň nás učí pokore a ochote prijať vedenie, čo je základným predpokladom nášho duchovného rastu.</p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- 12 Steps Card -->
+        <section class="section" style="padding-top: 2rem;">
+            <div class="container">
+                <div class="steps-card animate-on-scroll">
+                    <div class="steps-visual">
+                        <span class="steps-number">12</span>
+                        <span class="steps-label">Krokov</span>
+                    </div>
+                    <div class="steps-content">
+                        <h2>Duchovné uzdravenie</h2>
+                        <p>Hoci nám plán stravovania GreySheet umožňuje zastaviť kompulzívne prejedanie na fyzickej úrovni, trvalé uzdravenie si vyžaduje duchovnú transformáciu. Na tento účel používame 12 krokov Anonymných alkoholikov, ktoré sme prispôsobili pre naše spoločenstvo.</p>
+                        <p>Prvým a najdôležitejším krokom je priznať si našu bezmocnosť voči jedlu a skutočnosť, že naše životy sa stali neovládateľnými. Postupným prechádzaním krokov s pomocou nášho sponzora nachádzame hlbokú osobnú zmenu a objavujeme nový spôsob života.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h4>GreySheeters Anonymous</h4>
+                <p>Spoločenstvo mužov a žien, ktorí spoločne riešia svoj problém s kompulzívnym prejedaním.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Rýchle odkazy</h4>
+                <ul>
+                    <li><a href="o-gsa.html">O spoločenstve</a></li>
+                    <li><a href="je-gsa-pre-vas.html">Je GSA pre vás?</a></li>
+                    <li><a href="stretnutia.html">Stretnutia</a></li>
+                    <li><a href="literatura.html">Literatúra</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Užitočné zdroje</h4>
+                <ul>
+                    <li><a href="https://www.greysheet.org/" target="_blank" rel="noopener">Oficiálna medzinárodná stránka (EN)</a></li>
+                    <li><a href="kontakt.html">Kontaktujte nás</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; <span id="year"></span> GreySheeters Anonymous Slovensko. Všetky práva vyhradené.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

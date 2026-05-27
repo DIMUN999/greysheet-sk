@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="sk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt - GreySheeters Anonymous Slovensko</title>
+    <meta name="description"
+        content="Kontaktujte spoločenstvo GreySheeters Anonymous na Slovensku. Požiadajte o bezplatného sponzora a stravovací plán GreySheet diskrétne a bezpečne.">
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/GSA_Horizontal_logo.png">
+
+    <link rel="stylesheet" href="style.css?v=1.0.1">
+    <style>
+        button, input, select, textarea {
+            font-family: 'Inter', sans-serif !important;
+        }
+
+        .pt-0 {
+            padding-top: 0 !important;
+        }
+
+        /* Page intro styling */
+        .page-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .page-intro h2 {
+            font-size: 2.5rem;
+            color: #0f172a;
+            margin-bottom: 1.5rem;
+        }
+        .page-intro p {
+            font-size: 1.15rem;
+            color: var(--text-main);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Subtle divider */
+        .section-divider {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--border-color), transparent);
+            margin: 3rem auto;
+            max-width: 80%;
+        }
+
+        /* Contact Page Layout */
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        @media (min-width: 768px) {
+            .contact-layout {
+                grid-template-columns: 1.2fr 0.8fr;
+            }
+        }
+        
+        .contact-info-col h2 {
+            font-size: 2.25rem;
+            color: #0f172a;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-info-col p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+        }
+        
+        .contact-steps {
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .contact-step-item {
+            display: flex;
+            gap: 1.25rem;
+            align-items: flex-start;
+        }
+        
+        .step-number {
+            background-color: var(--alert-bg);
+            color: var(--primary-color);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            border: 1px solid var(--alert-border);
+        }
+        
+        .step-text h4 {
+            font-size: 1.15rem;
+            color: #0f172a;
+            margin-bottom: 0.25rem;
+        }
+        
+        .step-text p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-light);
+            margin-bottom: 0;
+        }
+        
+        /* Contact CTA box */
+        .contact-cta-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .contact-cta-card h3 {
+            font-size: 1.5rem;
+            color: #0f172a;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-cta-card p {
+            font-size: 1rem;
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        
+        .direct-details {
+            margin-top: 2rem;
+            width: 100%;
+            border-top: 1px solid var(--border-color);
+            padding-top: 2rem;
+            text-align: left;
+        }
+        
+        .direct-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+        
+        .direct-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .direct-icon {
+            color: var(--primary-color);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .direct-item a {
+            font-weight: 500;
+        }
+        
+        /* Privacy Info Box */
+        .confidential-box {
+            background-color: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-left: 4px solid #16a34a;
+            color: #14532d;
+            padding: 1.25rem 1.5rem;
+            border-radius: 8px;
+            max-width: 1000px;
+            margin: 3rem auto 0 auto;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+        
+        .confidential-icon {
+            flex-shrink: 0;
+            color: #16a34a;
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="images/images (6).jpg" alt="GreySheeters Anonymous Slovensko Logo" class="logo-img">
+                <div class="logo-text">
+                    <span class="logo-bold">GreySheeters</span> Anonymous
+                    <span class="logo-sub">Slovensko</span>
+                </div>
+            </a>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-btn" aria-label="Otvoriť menu" id="menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Navigation Links -->
+            <nav class="nav-links" id="nav-links">
+                <a href="index.html">Domov</a>
+                <a href="o-gsa.html">O spoločenstve</a>
+                <a href="je-gsa-pre-vas.html">Je GSA pre vás?</a>
+                <a href="stretnutia.html">Stretnutia</a>
+                <a href="literatura.html">Literatúra</a>
+                <a href="kontakt.html" class="btn-primary">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" style="padding: 6rem 0;">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1>Kontakt</h1>
+            <p>Máte otázky o spoločenstve GSA, potrebujete pomoc pri hľadaní sponzora alebo chcete začať s plánom stravovania?</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Split Content Section -->
+        <section class="section">
+            <div class="container">
+                <div class="contact-layout">
+                    <!-- Info Column -->
+                    <div class="contact-info-col animate-on-scroll">
+                        <h2>Ako to prebieha?</h2>
+                        <p>Členstvo v našom spoločenstve je bezplatné a anonymné. Plán stravovania GreySheet odovzdáva kvalifikovaný sponzor. Keď nás kontaktujete, prejdeme nasledujúcimi krokmi:</p>
+                        
+                        <ul class="contact-steps">
+                            <li class="contact-step-item">
+                                <div class="step-number">1</div>
+                                <div class="step-text">
+                                    <h4>Napíšte nám</h4>
+                                    <p>Vyplňte náš bezpečný kontaktný formulár a dajte nám vedieť, či hľadáte sponzora alebo len potrebujete viac informácií.</p>
+                                </div>
+                            </li>
+                            <li class="contact-step-item">
+                                <div class="step-number">2</div>
+                                <div class="step-text">
+                                    <h4>Ozveme sa vám</h4>
+                                    <p>Naša kontaktná osoba pre Slovensko sa s vami spojí e-mailom alebo telefonicky (podľa vašej preferencie) a odpovie na vaše otázky.</p>
+                                </div>
+                            </li>
+                            <li class="contact-step-item">
+                                <div class="step-number">3</div>
+                                <div class="step-text">
+                                    <h4>Získate podporu a sponzora</h4>
+                                    <p>Ak sa rozhodnete začať, pomôžeme vám nájsť sponzora, ktorý vám odovzdá stravovací plán a bude vás bezplatne viesť programom.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- CTA & Card Column -->
+                    <div>
+                        <div class="contact-cta-card animate-on-scroll">
+                            <h3>Chcete začať hneď?</h3>
+                            <p>Ak hľadáte sponzora a stravovací plán GreySheet, najrýchlejšou cestou je vyplnenie nášho kontaktného formulára.</p>
+                            <button class="btn-primary" id="open-modal-btn" style="width: 100%; text-align: center; cursor: pointer;">
+                                Otvoriť formulár
+                            </button>
+
+                            <div class="direct-details">
+                                <div class="direct-item">
+                                    <div class="direct-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                            <polyline points="22,6 12,13 2,6"></polyline>
+                                        </svg>
+                                    </div>
+                                    <span>E-mail: <a href="mailto:samuel.kolar2008@gmail.com">samuel.kolar2008@gmail.com</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Confidentiality Box -->
+                <div class="confidential-box animate-on-scroll">
+                    <div class="confidential-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <strong>Garancia 100% anonymity:</strong> Vaše osobné údaje a kontaktné informácie nebudú nikdy zdieľané s nikým mimo spoločenstva GSA. Dôsledne dbáme na anonymitu a rešpektujeme vaše súkromie.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Contact Form Modal -->
+    <div class="modal-overlay" id="contact-modal">
+        <div class="modal-container">
+            <button class="modal-close-btn" aria-label="Zatvoriť" id="close-modal-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            
+            <!-- Contact Form Content -->
+            <div id="modal-form-content">
+                <div class="modal-header">
+                    <h2>Kontaktný formulár</h2>
+                    <p>Napíšte nám a my sa vám ozveme čo najskôr. Všetky údaje sú diskrétne.</p>
+                </div>
+                
+                <form id="gsa-contact-form" action="https://formsubmit.co/ajax/samuel.kolar2008@gmail.com" method="POST" class="contact-form">
+                    <!-- FormSubmit Configuration -->
+                    <input type="hidden" name="_subject" value="Nová správa z webu GSA Slovensko">
+                    <input type="hidden" name="_template" value="table">
+                    
+                    <div class="form-group">
+                        <label for="form-name">Vaše krstné meno *</label>
+                        <input type="text" id="form-name" name="name" required class="form-control" placeholder="Napr. Ján">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="form-contact">E-mail alebo telefón *</label>
+                        <input type="text" id="form-contact" name="email_or_phone" required class="form-control" placeholder="E-mail alebo telefónne číslo">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="form-message">Vaša správa *</label>
+                        <textarea id="form-message" name="message" required class="form-control" placeholder="Napíšte nám, s čím vám môžeme pomôcť..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="checkbox-group">
+                            <input type="checkbox" name="request_sponsor" value="Áno">
+                            <span class="checkbox-label">
+                                <strong>Mám záujem o sponzora</strong>
+                            </span>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary form-submit-btn" id="submit-btn">
+                        <span>Odoslať správu</span>
+                        <div class="spinner" id="submit-spinner"></div>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Success State -->
+            <div id="modal-success-content" class="form-success-container">
+                <div class="success-icon-wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
+                <div class="success-message">
+                    <h3>Správa bola odoslaná!</h3>
+                    <p>Ďakujeme vám za dôveru. Vaša správa bola bezpečne doručená. Naša kontaktná osoba sa s vami spojí v priebehu najbližších dní.</p>
+                </div>
+                <button class="btn-primary" id="success-close-btn" style="width: 100%;">Zatvoriť</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h4>GreySheeters Anonymous</h4>
+                <p>Spoločenstvo mužov a žien, ktorí spoločne riešia svoj problém s kompulzívnym prejedaním.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Rýchle odkazy</h4>
+                <ul>
+                    <li><a href="o-gsa.html">O spoločenstve</a></li>
+                    <li><a href="je-gsa-pre-vas.html">Je GSA pre vás?</a></li>
+                    <li><a href="stretnutia.html">Stretnutia</a></li>
+                    <li><a href="literatura.html">Literatúra</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Užitočné zdroje</h4>
+                <ul>
+                    <li><a href="https://www.greysheet.org/" target="_blank" rel="noopener">Oficiálna medzinárodná stránka (EN)</a></li>
+                    <li><a href="kontakt.html">Kontaktujte nás</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; <span id="year"></span> GreySheeters Anonymous Slovensko. Všetky práva vyhradené.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Modal Elements
+            const modal = document.getElementById('contact-modal');
+            const openModalBtn = document.getElementById('open-modal-btn');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            const successCloseBtn = document.getElementById('success-close-btn');
+            
+            // Form & Success Containers
+            const formContent = document.getElementById('modal-form-content');
+            const successContent = document.getElementById('modal-success-content');
+            const contactForm = document.getElementById('gsa-contact-form');
+            const submitBtn = document.getElementById('submit-btn');
+            const submitSpinner = document.getElementById('submit-spinner');
+            const submitBtnText = submitBtn.querySelector('span');
+
+            // Open Modal
+            openModalBtn.addEventListener('click', () => {
+                modal.classList.add('open');
+                document.body.style.overflow = 'hidden'; // Disable scroll on body
+            });
+
+            // Close Modal Function
+            const closeModal = () => {
+                modal.classList.remove('open');
+                document.body.style.overflow = ''; // Restore scroll
+                
+                // Reset states after animation completes
+                setTimeout(() => {
+                    formContent.style.display = 'block';
+                    successContent.style.display = 'none';
+                    contactForm.reset();
+                    submitBtn.disabled = false;
+                    submitSpinner.style.display = 'none';
+                    submitBtnText.textContent = 'Odoslať správu';
+                }, 300);
+            };
+
+            closeModalBtn.addEventListener('click', closeModal);
+            successCloseBtn.addEventListener('click', closeModal);
+
+            // Close Modal on clicking outside the container
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            // Close Modal on ESC key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('open')) {
+                    closeModal();
+                }
+            });
+
+            // AJAX Form Submission
+            contactForm.addEventListener('submit', (e) => {
+                // FormSubmit AJAX does not work from the file:// protocol due to CORS constraints.
+                // We fall back to a standard redirect submission if opened locally.
+                if (window.location.protocol === 'file:') {
+                    contactForm.action = 'https://formsubmit.co/samuel.kolar2008@gmail.com';
+                    return; // Let standard form submission handle it
+                }
+
+                e.preventDefault();
+
+                // Disable submit button and show spinner
+                submitBtn.disabled = true;
+                submitSpinner.style.display = 'block';
+                submitBtnText.textContent = 'Odosiela sa...';
+
+                // Get form data
+                const formData = new FormData(contactForm);
+                const data = {};
+                formData.forEach((value, key) => {
+                    data[key] = value;
+                });
+
+                // Post via AJAX to FormSubmit
+                fetch(contactForm.action, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error('Chyba pri odosielaní formulára.');
+                    }
+                })
+                .then(data => {
+                    // Show success screen inside the modal
+                    formContent.style.display = 'none';
+                    successContent.style.display = 'flex';
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Nastal problém pri odosielaní správy. Skontrolujte prosím internetové pripojenie alebo nás kontaktujte priamo na e-mail.');
+                    
+                    // Re-enable submit button
+                    submitBtn.disabled = false;
+                    submitSpinner.style.display = 'none';
+                    submitBtnText.textContent = 'Odoslať správu';
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
