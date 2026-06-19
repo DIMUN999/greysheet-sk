@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stretnutia - GreySheeters Anonymous Slovensko</title>
     <meta name="description"
-        content="Nájdite online stretnutia GreySheeters Anonymous na Slovensku. Stretávame sa každú sobotu na Zoom a každý utorok na Skype. Požiadajte o prístupové údaje.">
+        content="Nájdite online stretnutia GreySheeters Anonymous na Slovensku. Stretávame sa každý piatok cez WhatsApp. Požiadajte o prístupové údaje.">
 
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,13 +45,8 @@
             display: grid;
             grid-template-columns: 1fr;
             gap: 2.5rem;
-            max-width: 900px;
+            max-width: 500px;
             margin: 0 auto;
-        }
-        @media (min-width: 768px) {
-            .meetings-layout {
-                grid-template-columns: 1fr 1fr;
-            }
         }
 
         .meeting-card {
@@ -274,37 +269,19 @@
             <div class="container">
 
                 <div class="meetings-layout">
-                    <!-- Zoom Card -->
+                    <!-- WhatsApp Card -->
                     <div class="meeting-card animate-on-scroll">
                         <div class="meeting-platform">
                             <span class="platform-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M23 7l-7 5 7 5V7z"></path>
-                                    <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                                 </svg>
                             </span>
-                            Zoom Meeting
+                            WhatsApp Meeting
                         </div>
-                        <h3 data-cms-id="meetings_card1_title">Sobotné stretnutie</h3>
-                        <div class="meeting-time" data-cms-id="meetings_card1_time">Každú sobotu o 19:00</div>
-                        <button class="btn-primary meeting-btn open-modal-btn" data-meeting="Sobotné stretnutie (Zoom)" data-cms-id="meetings_card1_btn">
-                            Požiadať o prístup
-                        </button>
-                    </div>
-
-                    <!-- Skype Card -->
-                    <div class="meeting-card animate-on-scroll">
-                        <div class="meeting-platform">
-                            <span class="platform-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-                                </svg>
-                            </span>
-                            <span data-cms-id="meetings_card2_badge">Skype Meeting</span>
-                        </div>
-                        <h3 data-cms-id="meetings_card2_title">Utorkové stretnutie</h3>
-                        <div class="meeting-time" data-cms-id="meetings_card2_time">Každý utorok o 19:00</div>
-                        <button class="btn-primary meeting-btn open-modal-btn" data-meeting="Utorkové stretnutie (Skype)" data-cms-id="meetings_card2_btn">
+                        <h3 data-cms-id="meetings_card1_title">Piatkové stretnutie</h3>
+                        <div class="meeting-time" data-cms-id="meetings_card1_time">Každý piatok o 19:00</div>
+                        <button class="btn-primary meeting-btn open-modal-btn" data-meeting="Piatkové stretnutie (WhatsApp)" data-cms-id="meetings_card1_btn">
                             Požiadať o prístup
                         </button>
                     </div>
@@ -402,14 +379,7 @@
                         <input type="text" id="form-contact" name="email_or_phone" required class="form-control" placeholder="Kde vám môžeme poslať odkaz">
                     </div>
 
-                    <div class="form-group">
-                        <label for="form-meeting-select">Vyberte stretnutie *</label>
-                        <select id="form-meeting-select" name="requested_meeting" class="form-control" style="-webkit-appearance: none; -moz-appearance: none; appearance: none; background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%2364748b%22 stroke-width=%222.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><polyline points=%226 9 12 15 18 9%22></polyline></svg>'); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem;">
-                            <option value="Sobotné stretnutie (Zoom)">Sobotné stretnutie (Zoom) - Sobota o 19:00</option>
-                            <option value="Utorkové stretnutie (Skype)">Utorkové stretnutie (Skype) - Utorok o 19:00</option>
-                            <option value="Obe stretnutia">Obe stretnutia (Zoom aj Skype)</option>
-                        </select>
-                    </div>
+                    <input type="hidden" id="form-meeting-select" name="requested_meeting" value="Piatkové stretnutie (WhatsApp)">
                     
                     <div class="form-group">
                         <label for="form-message">Vaša správa (voliteľné)</label>
